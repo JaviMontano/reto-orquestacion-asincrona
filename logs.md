@@ -128,3 +128,14 @@
    - Playwright: `1 passed` con conflicto `412`, reconciliación a `INVALIDATED/v2` y persistencia final confirmada.
    - Resultado: `VERIFICATION_OK`, exit `0`.
 3. [METODOLOGIA] El commit que incorpora este recibo solo modifica documentación. Tras publicarlo se repiten el readback del SHA final y el gate desde un segundo clon fresco; su evidencia externa se informa en el cierre sin generar una cadena infinita de commits de recibos.
+
+## 2026-08-29 — Hallazgo del segundo clon fresco
+
+1. El segundo clon confirmó el SHA remoto `d8a775776af30516fd5d6a4c9515c305257f715b`, pero el gate detectó una prueba frontend intermitente: `13 passed, 1 failed`.
+2. Causa: el test de fallo de red tardío encontraba el botón desde el primer render y podía intentar pulsarlo mientras seguía deshabilitado, antes de recibir el snapshot inicial. El fallo estaba en la coordinación del test, no en la reconciliación del componente.
+3. Corrección: ambos tests de respuesta tardía esperan el estado autoritativo `PENDING_APPROVAL` antes del clic. No se redujeron aserciones ni tiempos límite.
+4. Evidencia posterior:
+   - Suite frontend Docker: una ejecución visible y cinco repeticiones consecutivas, todas con `14 passed`.
+   - Gate integral local: backend `12 passed`, frontend `14 passed`, Playwright `1 passed`, package consumer y gate anti-reactivo verdes.
+   - Resultado: `VERIFICATION_OK`, exit `0`.
+5. [PEDAGOGIA] Un control visible no implica que ya sea interactivo; las pruebas deben sincronizarse con el estado observable que habilita la acción, no con la mera presencia del nodo.

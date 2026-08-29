@@ -100,7 +100,8 @@ describe('DocumentApprovalCard', () => {
     const onEvent = vi.fn()
 
     const view = render(<DocumentApprovalCard documentId="doc-1" apiBaseUrl="http://api" onEvent={onEvent} />)
-    fireEvent.click(await screen.findByRole('button', { name: 'Aprobar' }))
+    await screen.findByText('Pendiente de aprobación')
+    fireEvent.click(screen.getByRole('button', { name: 'Aprobar' }))
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2))
     view.rerender(<DocumentApprovalCard documentId="doc-2" apiBaseUrl="http://api" onEvent={onEvent} />)
     await screen.findByText('Documento nuevo')
@@ -123,7 +124,8 @@ describe('DocumentApprovalCard', () => {
     const onEvent = vi.fn()
 
     const view = render(<DocumentApprovalCard documentId="doc-1" apiBaseUrl="http://api" onEvent={onEvent} />)
-    fireEvent.click(await screen.findByRole('button', { name: 'Aprobar' }))
+    await screen.findByText('Pendiente de aprobación')
+    fireEvent.click(screen.getByRole('button', { name: 'Aprobar' }))
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2))
     view.rerender(<DocumentApprovalCard documentId="doc-2" apiBaseUrl="http://api" onEvent={onEvent} />)
     await screen.findByText('Documento vigente')
