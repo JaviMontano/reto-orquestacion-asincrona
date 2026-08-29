@@ -169,5 +169,10 @@
    - GitHub Actions run `33254130010`: `success`; job Docker `1m52s`.
    - Hallazgo no bloqueante: `actions/checkout@v4` produjo advertencia por runtime Node deprecado.
    - Acción: actualizar a `actions/checkout@v7`, versión vigente indicada por el repositorio oficial, y exigir un nuevo resultado CI antes del cierre.
+8. CI actualizada
+   - Commit de mantenimiento: `752db36edaea0451e91e40b1450877def07d0ecf`.
+   - GitHub Actions run `33254233483`: `success`; job Docker `1m54s`.
+   - `actions/checkout@v7` ejecutó setup y post-run correctamente; la advertencia anterior desapareció.
+   - [METODOLOGIA] El siguiente commit solo cierra recibos documentales y usa `[skip ci]`; la última mutación ejecutable ya quedó validada por el run anterior.
 
 [NEUROCIENCIA] N/A.

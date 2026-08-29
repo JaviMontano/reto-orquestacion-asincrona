@@ -1,6 +1,6 @@
 # EVIDENCE — test-rereview-learning-kb
 
-Estado: evidencia local completa; CI inicial verde; mantenimiento CI y NotebookLM pendientes.
+Estado: repositorio validado y publicado; NotebookLM pendiente.
 
 ## Fuente
 
@@ -42,7 +42,6 @@ exit          0
 
 ## Pendiente antes del cierre
 
-- revalidar CI después de actualizar `actions/checkout@v4` a `v7` por advertencia de runtime deprecado;
 - incorporación y consulta de control en NotebookLM.
 
 ## Publicación intermedia
@@ -52,6 +51,13 @@ exit          0
 - Readback de `docs/REQUIREMENTS-AUDIT.md`: SHA-256 `ea5c11911e934c1874d1cba16a6b3dd31b260368c1dc5ab96b5a6ce10d1decae`.
 - GitHub Actions `33254130010`: `success`, job Docker `1m52s`.
 - Anotación: runtime de `actions/checkout@v4` deprecado; se actualiza según upstream oficial y se vuelve a ejecutar.
+
+## CI final ejecutable
+
+- Commit: `752db36edaea0451e91e40b1450877def07d0ecf`.
+- GitHub Actions `33254233483`: `success`, job Docker `1m54s`.
+- Checkout observado: `actions/checkout@v7`, setup y post-run verdes, sin la anotación anterior.
+- [METODOLOGIA] El commit posterior solo actualiza estos recibos; no cambia código, scripts, configuración o expectativas.
 
 [PEDAGOGIA] La ausencia de cambio en backend/frontend es un resultado de auditoría, no una omisión: sus invariantes ya estaban cubiertos y no se añadió complejidad sin requisito.
 
