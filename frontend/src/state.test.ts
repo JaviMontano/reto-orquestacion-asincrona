@@ -31,6 +31,17 @@ describe('approvalReducer', () => {
     expect(approvalReducer(current, { type: 'loaded', document: snapshot('9', 'APPROVED') })).toEqual(current)
   })
 
+  it('accepts the deliberate local reset even when it recreates version one', () => {
+    const approved = approvalReducer(initialState, { type: 'loaded', document: snapshot('2', 'APPROVED') })
+    const reset = approvalReducer(approved, {
+      type: 'resetSucceeded',
+      document: snapshot('1', 'PENDING_APPROVAL'),
+    })
+
+    expect(reset.authoritative).toMatchObject({ status: 'PENDING_APPROVAL', version: '1' })
+    expect(reset.phase).toBe('stable')
+  })
+
   it('forgets pending intent when the host changes document', () => {
     const loaded = approvalReducer(initialState, { type: 'loaded', document: snapshot('1', 'PENDING_APPROVAL') })
     const pending = approvalReducer(loaded, { type: 'approvalStarted', requestId: 'old-request' })

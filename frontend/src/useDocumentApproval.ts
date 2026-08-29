@@ -91,7 +91,7 @@ export function useDocumentApproval({ documentId, apiBaseUrl, onEvent }: Options
     if (activeRequest.current) return
     const requestedTarget = targetKey
     const document = await resetDocument(apiBaseUrl, documentId)
-    if (activeTarget.current === requestedTarget) dispatch({ type: 'loaded', document })
+    if (activeTarget.current === requestedTarget) dispatch({ type: 'resetSucceeded', document })
   }, [apiBaseUrl, documentId, targetKey])
 
   return { state, approve, refresh, reset }

@@ -16,6 +16,7 @@
 | Contrato microfrontend | `public-api.ts`, Vite library build, declaraciones TS | build frontend + Vitest | ES, UMD y `.d.ts` |
 | Instancias aisladas | hook/reducer local por componente | Vitest | dos tarjetas independientes |
 | Stack reproducible | `compose.yaml`, Dockerfiles | `docker compose config`, E2E | servicios saludables |
+| Ciclo completo en navegador | `conflict.spec.ts`, `document-lifecycle.spec.ts` | Playwright sobre stack Docker | aprobación optimista, recarga, reset, S1, S2, ETag, persistencia y consola limpia |
 | Sin stack reactivo | dependencias backend | gate `scripts/verify.sh` | grep sin coincidencias |
 | Privacidad | `.gitignore` + documentación normalizada | escaneo previo a commit | sin PDF, PII ni rutas locales |
 

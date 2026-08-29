@@ -14,6 +14,7 @@ export interface ApprovalState {
 export type ApprovalAction =
   | { type: 'documentChanged' }
   | { type: 'loaded'; document: DocumentSnapshot }
+  | { type: 'resetSucceeded'; document: DocumentSnapshot }
   | { type: 'approvalStarted'; requestId: string }
   | { type: 'approvalSucceeded'; requestId: string; document: DocumentSnapshot }
   | { type: 'conflict'; requestId: string; code: string; document: DocumentSnapshot }
@@ -34,6 +35,9 @@ export function approvalReducer(state: ApprovalState, action: ApprovalAction): A
       return initialState
     case 'loaded':
       return adoptSnapshot(state, action.document, 'stable', '')
+    case 'resetSucceeded':
+      // El reset local recrea deliberadamente el fixture en v1; no es una respuesta tardía.
+      return replaceSnapshot(action.document)
     case 'approvalStarted':
       return {
         ...state,
@@ -64,6 +68,16 @@ export function approvalReducer(state: ApprovalState, action: ApprovalAction): A
       }
     case 'loadFailed':
       return { ...state, phase: 'outcomeUnknown', message: 'No fue posible consultar el estado autoritativo.' }
+  }
+}
+
+function replaceSnapshot(document: DocumentSnapshot): ApprovalState {
+  return {
+    authoritative: document,
+    optimisticStatus: null,
+    pendingRequestId: null,
+    phase: 'stable',
+    message: '',
   }
 }
 
