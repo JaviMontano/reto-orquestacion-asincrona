@@ -1,6 +1,6 @@
 # Plan de implementación y decisiones
 
-Estado: implementación local verificada; publicación en curso · Actualizado: 2026-08-29
+Estado: completado, verificado y publicado · Actualizado: 2026-08-29
 
 ## 1. Autoridad y alcance
 

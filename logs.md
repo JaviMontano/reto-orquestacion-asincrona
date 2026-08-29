@@ -115,3 +115,16 @@
 3. CI
    - Workflow `verify` detectado en estado inicial `queued`, run `33252866699`.
 4. [METODOLOGIA] Este apéndice documental produce un commit de cierre posterior; el clon fresco y el readback final se ejecutan contra ese HEAD, no contra el SHA anterior.
+
+## 2026-08-29 — Clon fresco y cierre reproducible
+
+1. Clon fresco del HEAD remoto
+   - Directorio temporal: omitido deliberadamente para no publicar rutas privadas.
+   - SHA clonado: `cd10b8d58b19f8d64cdf49e4541fe21a02608eb7`.
+   - El SHA coincidió con `origin/main` en el momento del clon.
+2. `./scripts/verify.sh` ejecutado desde el clon
+   - Backend: `12 tests`, `0 failures`, `0 errors` contra PostgreSQL `18.6`.
+   - Frontend: `14 tests`, `0 failures`; builds de app y librería, declaraciones y consumer check verdes.
+   - Playwright: `1 passed` con conflicto `412`, reconciliación a `INVALIDATED/v2` y persistencia final confirmada.
+   - Resultado: `VERIFICATION_OK`, exit `0`.
+3. [METODOLOGIA] El commit que incorpora este recibo solo modifica documentación. Tras publicarlo se repiten el readback del SHA final y el gate desde un segundo clon fresco; su evidencia externa se informa en el cierre sin generar una cadena infinita de commits de recibos.
