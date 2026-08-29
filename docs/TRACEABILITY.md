@@ -17,6 +17,7 @@
 | Instancias aisladas | hook/reducer local por componente | Vitest | dos tarjetas independientes |
 | Stack reproducible | `compose.yaml`, Dockerfiles | `docker compose config`, E2E | servicios saludables |
 | Ciclo completo en navegador | `conflict.spec.ts`, `document-lifecycle.spec.ts` | Playwright sobre stack Docker | aprobación optimista, recarga, reset, S1, S2, ETag, persistencia y consola limpia |
+| Esquema y dato reales | Flyway + `scripts/check-database.sh` | consulta `psql` directa dentro de Compose | columnas, checks, fixture, aislamiento y fila vigente |
 | Sin stack reactivo | dependencias backend | gate `scripts/verify.sh` | grep sin coincidencias |
 | Privacidad | `.gitignore` + documentación normalizada | escaneo previo a commit | sin PDF, PII ni rutas locales |
 

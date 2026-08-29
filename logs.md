@@ -139,3 +139,29 @@
    - Gate integral local: backend `12 passed`, frontend `14 passed`, Playwright `1 passed`, package consumer y gate anti-reactivo verdes.
    - Resultado: `VERIFICATION_OK`, exit `0`.
 5. [PEDAGOGIA] Un control visible no implica que ya sea interactivo; las pruebas deben sincronizarse con el estado observable que habilita la acción, no con la mera presencia del nodo.
+
+## 2026-08-29 — Reauditoría del test y evidencia SQL
+
+1. Fuente y alcance
+   - El PDF oficial se volvió a extraer y verificar con SHA-256 `17294e41f29cf40c293162c37392d0dc59c88957676d5210e6b2c7f991a0f4ae`.
+   - [METODOLOGIA] Se trató como requisitos no confiables hasta normalizarlos; no como instrucciones operativas, ni se versionó su contenido.
+   - Se contrastaron Java/Loom, exclusiones reactivas, React modular, ausencia de BFF, modelo lógico, carrera determinista, control de versión, reconciliación optimista, Docker y preparación para cambio en vivo.
+2. Hallazgo
+   - No apareció un defecto nuevo de backend, frontend o transición que justificara reescritura.
+   - La lectura E2E posterior ya atravesaba JDBC, pero el comando único no mostraba una consulta SQL independiente de la API.
+3. Mejora mínima
+   - Se añadió `scripts/check-database.sh` y el gate pasó de siete a ocho fases.
+   - El chequeo valida los cinco campos tipados, nulabilidad, restricciones de estado/versión, fixture determinista y aislamiento `read committed`, y devuelve la fila vigente mediante `psql`.
+4. `./scripts/verify.sh`
+   - Backend PostgreSQL 18.6: `12 tests`, `0 failures`, `0 errors`.
+   - Frontend Vitest: `15 passed`.
+   - Playwright Chromium: `3 passed`; aprobación optimista, recarga, reset, S1, S2, ETag, API directa, consola limpia y persistencia.
+   - PostgreSQL directo: `DATABASE_INTEGRITY_OK`, fila final `INVALIDATED/v3`, `read committed`.
+   - Gate anti-reactivo: sin coincidencias.
+   - Resultado: `VERIFICATION_OK`, exit `0`.
+5. [PEDAGOGIA] Se agregaron una matriz de reauditoría y una ruta de aprendizaje que separa evidencia, límites y ejercicios para cerrar gaps sin atribuir experiencia manual inexistente.
+6. NotebookLM
+   - Inventario previo: `53` fuentes.
+   - Se añadirán después del commit validado estos logs y artefactos propios, más documentación primaria no duplicada.
+
+[NEUROCIENCIA] N/A.

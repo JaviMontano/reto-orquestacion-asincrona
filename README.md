@@ -74,7 +74,7 @@ docker compose down --volumes
 ./scripts/verify.sh
 ```
 
-El gate valida el contrato agéntico y Compose, prueba el backend contra PostgreSQL real, ejecuta Vitest, construye app y microfrontend, levanta el stack, ejecuta Playwright y rechaza dependencias reactivas. El resultado válido termina en:
+El gate valida el contrato agéntico y Compose, prueba el backend contra PostgreSQL real, ejecuta Vitest, construye app y microfrontend, levanta el stack, ejecuta Playwright, consulta directamente esquema/fila en PostgreSQL y rechaza dependencias reactivas. El resultado válido termina en:
 
 ```text
 AGENTIC_WORKFLOW_OK
@@ -94,6 +94,8 @@ Al terminar elimina los contenedores y volúmenes creados por la verificación.
 ├── scripts/           # demo, verificación y creación de cambios
 ├── docs/
 │   ├── changes/       # intake, plan, spec y evidencia por evolución
+│   ├── LEARNING-PATH.md
+│   ├── REQUIREMENTS-AUDIT.md
 │   └── TRACEABILITY.md
 ├── compose.yaml
 ├── PLAN.md            # decisiones de la entrega inicial, ya cerrada
@@ -103,6 +105,8 @@ Al terminar elimina los contenedores y volúmenes creados por la verificación.
 [INFERENCIA] El cuaderno ICM revisado propone usar el sistema de archivos como arquitectura interpretable para flujos secuenciales con revisión humana. Aquí se adopta solo lo necesario: contexto y evidencia por cambio. El código no se mueve a carpetas de etapas porque `backend/`, `frontend/` y `e2e/` ya expresan mejor sus responsabilidades técnicas.
 
 La estructura ayuda a encontrar el contexto correcto; no garantiza que un agente entienda el dominio ni que el código funcione. Las pruebas y la revisión siguen siendo la autoridad.
+
+Para revisar el reto cláusula por cláusula, abre la [reauditoría contra la prueba](docs/REQUIREMENTS-AUDIT.md). Para aprender sin exagerar experiencia, sigue la [ruta de práctica y sustentación](docs/LEARNING-PATH.md).
 
 ## Cómo solicitar y gestionar un cambio
 
@@ -218,6 +222,8 @@ SHA-256 17294e41f29cf40c293162c37392d0dc59c88957676d5210e6b2c7f991a0f4ae
 No se versionan el PDF, contenido privado del notebook, rutas locales ni datos personales. Consulta:
 
 - [trazabilidad requisito → código → prueba](docs/TRACEABILITY.md)
+- [reauditoría contra el test](docs/REQUIREMENTS-AUDIT.md)
+- [ruta de aprendizaje y sustentación](docs/LEARNING-PATH.md)
 - [proceso y cambios](docs/changes/README.md)
 - [plan inicial cerrado](PLAN.md)
 - [bitácora inicial](logs.md)
