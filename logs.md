@@ -174,5 +174,15 @@
    - GitHub Actions run `33254233483`: `success`; job Docker `1m54s`.
    - `actions/checkout@v7` ejecutó setup y post-run correctamente; la advertencia anterior desapareció.
    - [METODOLOGIA] El siguiente commit solo cierra recibos documentales y usa `[skip ci]`; la última mutación ejecutable ya quedó validada por el run anterior.
+9. Exportación y readback de NotebookLM
+   - Cuaderno: `Technical Interview Coach · Java + React · VibeCoder` (`0eee170c-ed69-4e72-a3fa-e09903b621dd`).
+   - Inventario anterior: `53` fuentes; inventario posterior a la carga principal: `62`.
+   - Fuentes propias indexadas desde el SHA inmutable `aecfc379da2c248da1fbdb7242d53a33dce39916`: bitácora, reauditoría y ruta de aprendizaje.
+   - Fuentes primarias añadidas: JEP 444, Oracle Java 21 Virtual Threads, Spring Boot 4.1.1 Virtual Threads, RFC 9110, RFC 9457 y Playwright auto-waiting.
+   - No se duplicaron las fuentes ya existentes de PostgreSQL 18 `READ COMMITTED` ni React `useOptimistic`.
+   - Consulta de control restringida a las fuentes nuevas: `success`; explicó linearización SQL vs. Loom, flujo `If-Match → 412/problem+json → currentDocument → reducer`, evidencia exacta y límites no sostenidos.
+   - Conversation ID: `324ad5e3-f547-4ac6-91d8-c7bcf0e0327d`.
+   - Nota de handoff creada: `42b8c2a1-7a3c-4516-8d8c-cd388b5342eb`.
+   - [INFERENCIA] El cuaderno puede ahora enseñar desde la implementación observada y contrastarla con estándares, sin confundir planificación previa con evidencia posterior.
 
 [NEUROCIENCIA] N/A.

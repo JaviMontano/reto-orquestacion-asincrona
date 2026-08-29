@@ -1,6 +1,6 @@
 # EVIDENCE — test-rereview-learning-kb
 
-Estado: repositorio validado y publicado; NotebookLM pendiente.
+Estado: completo.
 
 ## Fuente
 
@@ -40,10 +40,6 @@ exit          0
 
 [INFERENCIA] La consulta SQL posterior al E2E demuestra que los estados observados no viven solo en el DOM o en memoria de proceso.
 
-## Pendiente antes del cierre
-
-- incorporación y consulta de control en NotebookLM.
-
 ## Publicación intermedia
 
 - Commit/push: `ab7da02968e67896ec1909274b4cc8ad85f0ce2b`.
@@ -58,6 +54,19 @@ exit          0
 - GitHub Actions `33254233483`: `success`, job Docker `1m54s`.
 - Checkout observado: `actions/checkout@v7`, setup y post-run verdes, sin la anotación anterior.
 - [METODOLOGIA] El commit posterior solo actualiza estos recibos; no cambia código, scripts, configuración o expectativas.
+
+## NotebookLM
+
+- Cuaderno: `0eee170c-ed69-4e72-a3fa-e09903b621dd`.
+- Fuentes antes/después de la carga principal: `53 → 62`.
+- Fuentes propias: logs, auditoría y aprendizaje, fijadas a SHA `aecfc379da2c248da1fbdb7242d53a33dce39916`.
+- Fuentes primarias: JEP 444, Oracle Java 21, Spring Boot 4.1.1, RFC 9110, RFC 9457 y Playwright.
+- Duplicados evitados: PostgreSQL 18 y React `useOptimistic` ya existían.
+- Consulta restringida a fuentes nuevas: `success`; conversation `324ad5e3-f547-4ac6-91d8-c7bcf0e0327d`.
+- La respuesta citó las fuentes propias y primarias para explicar integridad, HTTP, reconciliación, evidencia, límites y ejercicios; también rechazó claims de seguridad, producción, carga, pinning e idempotencia no demostrados.
+- Nota de handoff: `42b8c2a1-7a3c-4516-8d8c-cd388b5342eb`.
+
+[METODOLOGIA] La última publicación es documental y no invalida el run CI del ejecutable; su readback remoto y carga como recibo cierran la trazabilidad externa.
 
 [PEDAGOGIA] La ausencia de cambio en backend/frontend es un resultado de auditoría, no una omisión: sus invariantes ya estaban cubiertos y no se añadió complejidad sin requisito.
 
