@@ -100,3 +100,18 @@
    - Resultado: `0 P1 / 0 P2`.
    - Privacidad: sin PDF, secretos, rutas privadas ni PII detectados.
    - Veredicto: apto para publicación, condicionado a recibos de commit, push, readback y clon fresco.
+
+## 2026-08-29 — Commit y publicación
+
+1. Commit de implementación
+   - SHA: `62ad80f2b1c65bb91f84c1cc0bd0994e374684f6`.
+   - Árbol limpio y `git diff --check` sin hallazgos después de normalizar finales de archivo.
+2. Publicación
+   - Repositorio: `https://github.com/JaviMontano/reto-orquestacion-asincrona`.
+   - Visibilidad leída de vuelta mediante API: `PUBLIC`.
+   - Rama por defecto: `main`.
+   - `git ls-remote` devolvió el mismo SHA del commit de implementación.
+   - `README.md` remoto leído mediante API; blob `4b700e9bd038d409aad97356a6c87cb8aad97d89`.
+3. CI
+   - Workflow `verify` detectado en estado inicial `queued`, run `33252866699`.
+4. [METODOLOGIA] Este apéndice documental produce un commit de cierre posterior; el clon fresco y el readback final se ejecutan contra ese HEAD, no contra el SHA anterior.
