@@ -1,0 +1,43 @@
+{
+  "name": "@jmontano/document-approval-mfe",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist-lib/document-approval-mfe.umd.cjs",
+  "module": "./dist-lib/document-approval-mfe.js",
+  "types": "./dist-lib/public-api.d.ts",
+  "style": "./dist-lib/document-approval-mfe.css",
+  "exports": {
+    ".": {
+      "types": "./dist-lib/public-api.d.ts",
+      "import": "./dist-lib/document-approval-mfe.js",
+      "require": "./dist-lib/document-approval-mfe.umd.cjs"
+    },
+    "./style.css": "./dist-lib/document-approval-mfe.css"
+  },
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build && vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && npm run verify:package",
+    "verify:package": "node scripts/verify-package.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "@vitejs/plugin-react": "6.1.1",
+    "jsdom": "30.0.1",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "4.1.11"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}

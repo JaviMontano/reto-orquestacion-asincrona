@@ -1,0 +1,27 @@
+.card {
+  width: min(92vw, 42rem);
+  padding: 2rem;
+  border: 1px solid #dce2ea;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 1.25rem 3.5rem rgb(19 33 68 / 12%);
+  color: #15223b;
+}
+
+.eyebrow { margin: 0 0 .5rem; color: #635bff; font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.card h1 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.35rem); line-height: 1.08; }
+.metadata { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin: 2rem 0; }
+.metadata div { padding: 1rem; border-radius: .8rem; background: #f5f7fb; }
+.metadata dt { color: #68738a; font-size: .75rem; text-transform: uppercase; }
+.metadata dd { margin: .35rem 0 0; font-weight: 750; }
+.PENDING_APPROVAL { color: #9a6700; }
+.APPROVED { color: #067647; }
+.INVALIDATED { color: #b42318; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.actions button, .demoActions button { border: 0; border-radius: .65rem; padding: .8rem 1rem; font: inherit; font-weight: 700; cursor: pointer; }
+.actions button { background: #635bff; color: #fff; }
+.actions .secondary { background: #ecebff; color: #3d36a6; }
+.actions button:disabled { cursor: not-allowed; opacity: .45; }
+.demoActions { display: flex; gap: .5rem; margin-top: .75rem; }
+.demoActions button { padding: .55rem .75rem; background: transparent; color: #46536c; text-decoration: underline; }
+.message { min-height: 1.5rem; margin: 1.25rem 0 0; color: #46536c; }

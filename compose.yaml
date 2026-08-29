@@ -1,0 +1,103 @@
+name: orchestration-race
+
+x-db-environment: &db-environment
+  POSTGRES_DB: orchestration
+  POSTGRES_USER: orchestration
+  POSTGRES_PASSWORD: orchestration
+
+x-backend-environment: &backend-environment
+  SPRING_PROFILES_ACTIVE: local
+  DB_URL: jdbc:postgresql://db:5432/orchestration
+  DB_USER: orchestration
+  DB_PASSWORD: orchestration
+  APP_CORS_ALLOWED_ORIGINS: http://localhost:3000,http://host.docker.internal:3000
+
+services:
+  db:
+    image: postgres:18.6-alpine
+    environment: *db-environment
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orchestration -d orchestration"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - postgres-data:/var/lib/postgresql
+
+  backend:
+    build:
+      context: ./backend
+      target: runtime
+    environment: *backend-environment
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/8080'"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  frontend:
+    build:
+      context: ./frontend
+      target: runtime
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "3000:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1/health | grep -q ok"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  db-test:
+    image: postgres:18.6-alpine
+    profiles: ["test"]
+    environment: *db-environment
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orchestration -d orchestration"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+    tmpfs:
+      - /var/lib/postgresql
+
+  backend-test:
+    build:
+      context: ./backend
+      target: test
+    profiles: ["test"]
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://db-test:5432/orchestration
+      DB_USER: orchestration
+      DB_PASSWORD: orchestration
+      APP_CORS_ALLOWED_ORIGINS: http://localhost:3000
+    depends_on:
+      db-test:
+        condition: service_healthy
+
+  frontend-test:
+    build:
+      context: ./frontend
+      target: test
+    profiles: ["test"]
+
+  e2e:
+    build: ./e2e
+    profiles: ["e2e"]
+    environment:
+      E2E_BASE_URL: http://host.docker.internal:3000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      frontend:
+        condition: service_healthy
+
+volumes:
+  postgres-data:

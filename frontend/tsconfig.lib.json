@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dist-lib",
+    "rootDir": "src"
+  },
+  "include": [
+    "src/DocumentApprovalCard.tsx",
+    "src/api.ts",
+    "src/model.ts",
+    "src/public-api.ts",
+    "src/requestId.ts",
+    "src/state.ts",
+    "src/useDocumentApproval.ts",
+    "src/version.ts",
+    "src/vite-env.d.ts"
+  ]
+}
