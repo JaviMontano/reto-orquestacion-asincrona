@@ -163,5 +163,11 @@
 6. NotebookLM
    - Inventario previo: `53` fuentes.
    - Se añadirán después del commit validado estos logs y artefactos propios, más documentación primaria no duplicada.
+7. Publicación intermedia y CI
+   - Commit: `ab7da02968e67896ec1909274b4cc8ad85f0ce2b`.
+   - `git ls-remote` devolvió el mismo SHA y el documento de auditoría remoto pudo leerse.
+   - GitHub Actions run `33254130010`: `success`; job Docker `1m52s`.
+   - Hallazgo no bloqueante: `actions/checkout@v4` produjo advertencia por runtime Node deprecado.
+   - Acción: actualizar a `actions/checkout@v7`, versión vigente indicada por el repositorio oficial, y exigir un nuevo resultado CI antes del cierre.
 
 [NEUROCIENCIA] N/A.
